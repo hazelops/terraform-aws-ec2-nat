@@ -3,5 +3,5 @@ output "nat_instance_id" {
 }
 
 output "nat_security_group" {
-  value = aws_security_group.nat_instance.id
+  value = element(aws_security_group.nat_instance.*.id, 0)
 }
