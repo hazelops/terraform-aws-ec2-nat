@@ -35,7 +35,7 @@ resource "aws_instance" "nat_instance" {
   instance_type          = var.instance_type
   subnet_id              = var.public_subnets[0]
   key_name               = var.ec2_key_pair_name
-  vpc_security_group_ids = [aws_security_group.nat_instance.*.id]
+  vpc_security_group_ids = [aws_security_group.nat_instance[0].id]
 
   source_dest_check = false
   associate_public_ip_address = true
