@@ -7,9 +7,9 @@ output "security_group" {
 }
 
 output "public_ip" {
-  value = aws_eip.this.public_ip
+  value = element(aws_eip.this.*.public_ip, 0)
 }
 
 output "private_ip" {
-  value = aws_eip.this.private_ip
+  value = element(aws_eip.this.*.private_ip, 0)
 }
