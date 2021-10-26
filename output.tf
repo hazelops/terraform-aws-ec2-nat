@@ -9,3 +9,7 @@ output "security_group" {
 output "public_ip" {
   value = aws_eip.this.public_ip
 }
+
+output "private_ip" {
+  value = aws_eip.this.private_ip
+}
