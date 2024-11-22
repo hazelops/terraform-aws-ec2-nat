@@ -2,7 +2,14 @@ data "aws_caller_identity" "current" {}
 
 data "aws_availability_zones" "all" {}
 
-# AMI of the latest Amazon Linux 2
+data "template_file" "ec2_user_data" {
+  template = file("${path.module}/ec2_user_data.yml.tpl")
+  vars = {
+    hostname         = "${var.env}-${var.name}"
+  }
+}
+
+# AMI of the latest Amazon Linux 2023
 data "aws_ami" "this" {
   count       = var.enabled ? 1 : 0
   most_recent = true

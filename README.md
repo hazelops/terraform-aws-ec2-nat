@@ -7,7 +7,7 @@
 ```hcl
 module "nat_instance" {
     source    = "hazelops/ec2-nat/aws"
-    version   = "~> 2.0"
+    version   = "~> 3.0"
     enabled                 = var.nat_gateway_enabled ? false : true
     env                     = var.env
     vpc_id                  = module.vpc.vpc_id
@@ -28,7 +28,8 @@ module "nat_instance" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.77.0 |
+| <a name="provider_template"></a> [template](#provider\_template) | n/a |
 
 ## Modules
 
@@ -46,6 +47,7 @@ No modules.
 | [aws_ami.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 | [aws_availability_zones.all](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [template_file.ec2_user_data](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
 ## Inputs
 
@@ -57,6 +59,7 @@ No modules.
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Gives ability to enable or disable Creation of NAT EC2 | `bool` | `false` | no |
 | <a name="input_env"></a> [env](#input\_env) | n/a | `any` | n/a | yes |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | NAT instance type | `string` | `"t4g.nano"` | no |
+| <a name="input_name"></a> [name](#input\_name) | NAT instance name | `string` | `"nat-instance"` | no |
 | <a name="input_private_route_table_id"></a> [private\_route\_table\_id](#input\_private\_route\_table\_id) | n/a | `any` | n/a | yes |
 | <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | n/a | `any` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `any` | n/a | yes |

@@ -1,33 +1,3 @@
-# Security Groups
-resource "aws_security_group" "this" {
-  count       = var.enabled ? 1 : 0
-  name        = "${var.env}-nat-instance"
-  description = "Security Group for NAT EC2 Instance"
-  vpc_id      = var.vpc_id
-
-  ingress {
-    description = "Allow ingress traffic from the VPC CIDR block"
-    protocol    = -1
-    from_port   = 0
-    to_port     = 0
-    cidr_blocks = var.allowed_cidr_blocks
-  }
-
-  egress {
-    description = "Allow all egress traffic"
-    protocol    = -1
-    from_port   = 0
-    to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Terraform = "true"
-    Env       = var.env
-    Name      = "${var.env}-nat-instance"
-  }
-}
-
 # EC2
 resource "aws_instance" "this" {
   count                  = var.enabled ? 1 : 0
@@ -43,41 +13,11 @@ resource "aws_instance" "this" {
   lifecycle {
     create_before_destroy = true
   }
+  user_data = base64encode(data.template_file.ec2_user_data.rendered)
 
   tags = {
     Terraform = "true"
     Env       = var.env
-    Name      = "${var.env}-nat-instance"
+    Name      = "${var.env}-${var.name}"
   }
-
-}
-
-resource "aws_eip" "this" {
-  count = var.enabled ? 1 : 0
-  domain = "vpc"
-
-  lifecycle {
-    create_before_destroy = true
-  }
-
-  tags = {
-    "Name" = "${var.env}-nat-instance"
-  }
-
-  depends_on = [aws_instance.this]
-}
-
-resource "aws_eip_association" "nat_instance" {
-  count         = var.enabled ? 1 : 0
-  instance_id   = element(aws_instance.this.*.id, count.index)
-  allocation_id = aws_eip.this[count.index].id
-
-  depends_on = [aws_eip.this]
-}
-
-resource "aws_route" "this" {
-  count = var.enabled ? 1 : 0
-  route_table_id = var.private_route_table_id
-  network_interface_id = element(aws_instance.this.*.primary_network_interface_id, count.index)
-  destination_cidr_block = "0.0.0.0/0"
 }
