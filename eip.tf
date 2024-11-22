@@ -7,7 +7,7 @@ resource "aws_eip" "this" {
   }
 
   tags = {
-    "Name" = "${var.env}-nat-instance"
+    "Name" = "${var.env}-${var.name}"
   }
 
   depends_on = [aws_instance.this]

@@ -6,6 +6,7 @@ variable "ec2_key_pair_name" {}
 
 variable "name" {
   description = "NAT instance name"
+  type = string
   default = "nat-instance"
 }
 

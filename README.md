@@ -18,6 +18,7 @@ module "nat_instance" {
 }
 ```
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -72,3 +73,4 @@ No modules.
 | <a name="output_private_ip"></a> [private\_ip](#output\_private\_ip) | n/a |
 | <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
 | <a name="output_security_group"></a> [security\_group](#output\_security\_group) | n/a |
+<!-- END_TF_DOCS -->
