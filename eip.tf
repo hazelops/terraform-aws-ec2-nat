@@ -1,5 +1,5 @@
 resource "aws_eip" "this" {
-  count = var.enabled ? 1 : 0
+  count = var.enabled && var.eip_enabled ? 1 : 0
   domain = "vpc"
 
   lifecycle {
@@ -14,11 +14,10 @@ resource "aws_eip" "this" {
 }
 
 resource "aws_eip_association" "nat_instance" {
-  count         = var.enabled ? 1 : 0
+  count         = var.enabled && var.eip_enabled ? 1 : 0
+  depends_on = [aws_eip.this]
   instance_id   = element(aws_instance.this.*.id, count.index)
   allocation_id = aws_eip.this[count.index].id
-
-  depends_on = [aws_eip.this]
 }
 
 resource "aws_route" "this" {

@@ -23,9 +23,15 @@ variable "architecture" {
 }
 
 variable "enabled" {
-  description = "Gives ability to enable or disable Creation of NAT EC2"
+  description = "Gives ability to enable or disable creation of NAT EC2"
   type        = bool
   default     = false
+}
+
+variable "eip_enabled" {
+  description = "Gives ability to enable or disable creation of Elastic IP"
+  type = bool
+  default = false
 }
 
 variable "allowed_cidr_blocks" {

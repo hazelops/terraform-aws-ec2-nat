@@ -57,7 +57,8 @@ No modules.
 | <a name="input_allowed_cidr_blocks"></a> [allowed\_cidr\_blocks](#input\_allowed\_cidr\_blocks) | List of network subnets that are allowed | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | <a name="input_architecture"></a> [architecture](#input\_architecture) | NAT instance architecture | `list(string)` | <pre>[<br>  "arm64"<br>]</pre> | no |
 | <a name="input_ec2_key_pair_name"></a> [ec2\_key\_pair\_name](#input\_ec2\_key\_pair\_name) | n/a | `any` | n/a | yes |
-| <a name="input_enabled"></a> [enabled](#input\_enabled) | Gives ability to enable or disable Creation of NAT EC2 | `bool` | `false` | no |
+| <a name="input_eip_enabled"></a> [eip\_enabled](#input\_eip\_enabled) | Gives ability to enable or disable creation of Elastic IP | `bool` | `false` | no |
+| <a name="input_enabled"></a> [enabled](#input\_enabled) | Gives ability to enable or disable creation of NAT EC2 | `bool` | `false` | no |
 | <a name="input_env"></a> [env](#input\_env) | n/a | `any` | n/a | yes |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | NAT instance type | `string` | `"t4g.nano"` | no |
 | <a name="input_name"></a> [name](#input\_name) | NAT instance name | `string` | `"nat-instance"` | no |
