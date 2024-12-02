@@ -7,9 +7,9 @@ output "security_group" {
 }
 
 output "public_ip" {
-  value = element(aws_eip.this.*.public_ip, 0)
+  value = var.eip_enabled ?  element(aws_eip.this.*.public_ip, 0) : aws_instance.this.public_ip
 }
 
 output "private_ip" {
-  value = element(aws_eip.this.*.private_ip, 0)
+  value = var.eip_enabled ? element(aws_eip.this.*.private_ip, 0) : aws_instance.this.private_ip
 }

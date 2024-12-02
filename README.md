@@ -7,7 +7,7 @@
 ```hcl
 module "nat_instance" {
     source    = "hazelops/ec2-nat/aws"
-    version   = "~> 2.0"
+    version   = "~> 3.0"
     enabled                 = var.nat_gateway_enabled ? false : true
     env                     = var.env
     vpc_id                  = module.vpc.vpc_id
@@ -18,6 +18,7 @@ module "nat_instance" {
 }
 ```
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -28,7 +29,8 @@ module "nat_instance" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.77.0 |
+| <a name="provider_template"></a> [template](#provider\_template) | n/a |
 
 ## Modules
 
@@ -46,6 +48,7 @@ No modules.
 | [aws_ami.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 | [aws_availability_zones.all](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [template_file.ec2_user_data](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
 ## Inputs
 
@@ -54,9 +57,11 @@ No modules.
 | <a name="input_allowed_cidr_blocks"></a> [allowed\_cidr\_blocks](#input\_allowed\_cidr\_blocks) | List of network subnets that are allowed | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | <a name="input_architecture"></a> [architecture](#input\_architecture) | NAT instance architecture | `list(string)` | <pre>[<br>  "arm64"<br>]</pre> | no |
 | <a name="input_ec2_key_pair_name"></a> [ec2\_key\_pair\_name](#input\_ec2\_key\_pair\_name) | n/a | `any` | n/a | yes |
-| <a name="input_enabled"></a> [enabled](#input\_enabled) | Gives ability to enable or disable Creation of NAT EC2 | `bool` | `false` | no |
+| <a name="input_eip_enabled"></a> [eip\_enabled](#input\_eip\_enabled) | Gives ability to enable or disable creation of Elastic IP | `bool` | `false` | no |
+| <a name="input_enabled"></a> [enabled](#input\_enabled) | Gives ability to enable or disable creation of NAT EC2 | `bool` | `false` | no |
 | <a name="input_env"></a> [env](#input\_env) | n/a | `any` | n/a | yes |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | NAT instance type | `string` | `"t4g.nano"` | no |
+| <a name="input_name"></a> [name](#input\_name) | NAT instance name | `string` | `"nat-instance"` | no |
 | <a name="input_private_route_table_id"></a> [private\_route\_table\_id](#input\_private\_route\_table\_id) | n/a | `any` | n/a | yes |
 | <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | n/a | `any` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `any` | n/a | yes |
@@ -69,3 +74,4 @@ No modules.
 | <a name="output_private_ip"></a> [private\_ip](#output\_private\_ip) | n/a |
 | <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
 | <a name="output_security_group"></a> [security\_group](#output\_security\_group) | n/a |
+<!-- END_TF_DOCS -->
